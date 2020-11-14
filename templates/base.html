@@ -1,0 +1,16 @@
+{% load static %}
+
+<!doctype html>
+<html>
+<head>
+	<title>Text Recognition</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap">
+	<link rel="icon" type="image/png" sizes = "16x16" href="{% static 'ocr.png' %}">
+	<link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+	{% include 'navbar.html' %}
+
+	{% block content %}:){% endblock %}
+</body>
+</html>

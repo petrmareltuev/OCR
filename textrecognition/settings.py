@@ -25,7 +25,7 @@ SECRET_KEY = '2guef4nsk%n5sp7gj9z#50eb4xsf7+5m^_*ztng&l@nx&!qz__'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['petronix.alwaysdata.net']
 
 
 # Application definition

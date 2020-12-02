@@ -25,7 +25,8 @@ SECRET_KEY = '2guef4nsk%n5sp7gj9z#50eb4xsf7+5m^_*ztng&l@nx&!qz__'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['petronix.alwaysdata.net']
+ALLOWED_HOSTS = ['petronix.alwaysdata.net',
+'127.0.0.1']
 
 
 # Application definition
@@ -124,3 +125,34 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     [BASE_DIR / 'styles']
 )
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'console': {
+            'format': '%(name)-12s %(levelname)-8s %(message)s'
+        },
+        'file': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+        }
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'console'
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'file',
+            'filename': 'debug.log'
+        }
+    },
+    'loggers': {
+        '': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file']
+        }
+    }
+}

@@ -56,3 +56,15 @@ ul {
 
 .upload_image_input{
 }
+
+.processed_image{
+  width: auto;
+  height: auto;
+  
+}
+
+.processed_view{
+  width: 30%;
+  height: 300px;
+  border: 5px dashed #f7a239;
+}

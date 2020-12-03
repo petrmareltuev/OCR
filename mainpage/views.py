@@ -19,9 +19,11 @@ def home_view(request, *args, **kwargs):
 
 		image = Image.open(uploaded_image)
 		logger.debug("image: {} {}".format(image.format, image.size))
+
 		data = asarray(image)
-		
-		data, sentences = data, ["Hello Petr!", "How are you?"]
+		logger.debug(data.shape)
+
+		data, sentences = data, {(255,0,0): "Hello Petr!",(255,222,0): "How are you?"}
 
 		img_uri = numpyimg_to_uri(data)
 		return render(request, 'image.html', {"image": img_uri, "sentences": sentences})

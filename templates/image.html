@@ -5,8 +5,8 @@
 <div class = "processed_view">
 <img class = "processed_image" src="{{image}}">
 
-{% for row in sentences %} 
-<h1>{{row}}</h1>
+{% for col, row in sentences.items %} 
+<h1 style="color:rgb{{col}};">{{row}}</h1>
 {% endfor %}
 
 </div>

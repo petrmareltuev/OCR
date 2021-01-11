@@ -57,13 +57,23 @@ ul {
 .upload_image_input{
 }
 
-.processed_image{
-  max-width: 100%;
-  max-height: 100%;
+.processed_view{
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  justify-content: center;
 }
 
-.processed_view{
-  width: 30%;
-  height: 500px;
+.processed_image{
+  width: 50%;
+  height: auto;
   border: 5px dashed #f7a239;
+  align-self: flex-start;
+}
+
+.sentences_area{
+  text-align: center;
+  align-self: flex-start;
+  width: 50%;
+  background-color: #098234;
 }

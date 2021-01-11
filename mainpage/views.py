@@ -23,8 +23,8 @@ def home_view(request, *args, **kwargs):
 
 		image = Image.open(uploaded_image)
 		logger.debug("image: {} {}".format(image.format, image.size))
-
 		data = asarray(image)
+		logger.debug(data.shape)
 
 		sys.argv = [sys.argv[0]]
 

@@ -3,11 +3,12 @@
 
 {% block content %}
 <div class = "processed_view">
-<img class = "processed_image" src="{{image}}">
-
-{% for col, row in sentences.items %} 
-<h1 style="color:rgb{{col}};">{{row}}</h1>
-{% endfor %}
+	<img class = "processed_image" src="{{image}}">
+	<div class="sentences_area">
+		{% for col, row in sentences.items %} 
+		<h1 style="color:rgb{{col}};">{{row}}</h1>
+		{% endfor %}
+	</div>
 
 </div>
 {% endblock %}

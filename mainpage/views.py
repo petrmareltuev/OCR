@@ -5,11 +5,17 @@ from PIL import Image
 from numpy import asarray
 from base64 import b64encode
 from io import BytesIO
-from Model.OCRModel import OCRModel
 import sys
-import random
-
+from textrecognition.tasks import recognize,hi
+from textrecognition.settings import CELERY_BROKER_URL, CELERY_BROKER_TRANSPORT_OPTIONS
+from kombu import Connection, Producer, Consumer
+import base64
 # Create your views here.
+
+def fuf():
+	logger = logging.getLogger(__name__)
+	logger.debug(hello)
+	return "tutut"
 
 def home_view(request, *args, **kwargs):
 
@@ -18,32 +24,14 @@ def home_view(request, *args, **kwargs):
 	
 
 	if request.method == 'POST':
+
+		logger.debug('recognition request ')
 		uploaded_image = request.FILES['image_to_process']
-		logger.debug("file: {} {}kb".format(uploaded_image.name, uploaded_image.size))
+		logger.debug(type(uploaded_image))
+		data64 = base64.b64encode(uploaded_image.file.read())
+		recognize.delay(data64.decode('utf-8'), __name__)
 
-		image = Image.open(uploaded_image)
-		logger.debug("image: {} {}".format(image.format, image.size))
-		data = asarray(image)
-		logger.debug(data.shape)
-
-		sys.argv = [sys.argv[0]]
-
-		ocr = OCRModel()
-		result = ocr.recognise_text(data, cls=False)
-
-		sentences = [el[1][0] for el in result]
-
-		
-		colored_sentences = {}
-		for sentence in sentences:
-			colored_sentences[(random.randint(0,255),random.randint(0,255),random.randint(0,255))] = sentence
-
-		logger.error(colored_sentences)
-
-		#data, sentences = data, {(255,0,0): "Hello Petr!",(255,222,0): "How are you?"}
-
-		img_uri = numpyimg_to_uri(data)
-		return render(request, 'image.html', {"image": img_uri, "sentences": colored_sentences})
+		return render(request, 'image.html', {"image": 'sdf', "sentences": {}})
 	
 	return render(request, "home.html", {})
 

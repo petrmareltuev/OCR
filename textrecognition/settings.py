@@ -125,6 +125,7 @@ STATICFILES_DIRS = (
     [BASE_DIR / 'styles']
 )
 
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -146,12 +147,41 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'formatter': 'file',
             'filename': 'debug.log'
-        }
+        },  
     },
     'loggers': {
         '': {
             'level': 'DEBUG',
             'handlers': ['console', 'file']
-        }
+        },
+        'celery': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False
+        },
+        
     }
 }
+
+
+REDIS_HOST = '0.0.0.0'
+REDIS_PORT = '6379'
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600} 
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+
+
+CELERYD_HIJACK_ROOT_LOGGER = False
+CELERY_IGNORE_RESULT = True
+CELERY_DISABLE_RATE_LIMITS = True
+# CELERY_ACKS_LATE = True
+CELERY_TASK_RESULT_EXPIRES = 3600
+# maximum time for a task to execute
+CELERYD_TASK_TIME_LIMIT = 60000
+CELERY_DEFAULT_ROUTING_KEY = "default"
+CELERY_DEFAULT_QUEUE = 'default'
+CELERY_DEFAULT_EXCHANGE = "default"
+CELERY_DEFAULT_EXCHANGE_TYPE = "direct"
+# CELERYD_MAX_TASKS_PER_CHILD = 50
+CELERY_DISABLE_RATE_LIMITS = True
+CELERYD_CONCURRENCY = 2

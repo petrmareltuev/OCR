@@ -2,7 +2,6 @@ import numpy as np
 from paddleocr import PaddleOCR
 from PIL import Image
 
-
 class OCRModel:
     """
     You can set the parameter `lang` as `ch`, `en`, `french`, `german`, `korean`, `japan`

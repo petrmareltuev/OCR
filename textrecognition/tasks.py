@@ -10,6 +10,7 @@ from io import BytesIO
 import sys
 from base64 import b64encode
 from celery.signals import setup_logging
+import cv2
 
 @setup_logging.connect
 def config_loggers(*args, **kwargs):
@@ -19,8 +20,8 @@ def config_loggers(*args, **kwargs):
 
 
 @app.task
-def recognize(b64_image, logger_name):
-	logger = logging.getLogger(logger_name)
+def recognize(b64_image):
+	logger = logging.getLogger('celery')
 	logger.debug("recognition started")
 
 	img_encoded = b64_image.encode('utf-8')
@@ -29,6 +30,9 @@ def recognize(b64_image, logger_name):
 	image = Image.open(BytesIO(img))
 	data = asarray(image)
 	logger.debug(data.shape)
+
+	if len(data.shape) > 2 and data.shape[2] == 4:
+		data = cv2.cvtColor(data, cv2.COLOR_BGRA2BGR)
 	
 	sys.argv = [sys.argv[0]]
 	
@@ -46,7 +50,6 @@ def recognize(b64_image, logger_name):
 	#data, sentences = data, {(255,0,0): "Hello Petr!",(255,222,0): "How are you?"}
 
 	img_uri = numpyimg_to_uri(data)
-	
 	return img_uri
 
 	

@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from mainpage.views import home_view
+from mainpage.views import home_view, processing
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_view, name = 'home')
+    path('', home_view, name = 'home'),
+    path('processing/<uuid:uuid>', processing, name = 'processing'),
+    # path('image/<uuid:uuid>', image, name = 'image'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

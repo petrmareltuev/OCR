@@ -1,0 +1,7 @@
+sudo apt update
+sudo apt install build-essential
+sudo apt install libc-bin
+pip install paddlepaddle==2.0.0rc1
+pip install paddleocr
+pip install Levenshtein
+conda install shapely

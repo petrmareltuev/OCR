@@ -9,6 +9,7 @@ import sys
 from textrecognition.tasks import recognize
 import base64
 from celery import group
+from django.utils.datastructures import MultiValueDictKeyError
 from celery.result import AsyncResult
 
 def home_view(request, *args, **kwargs):
@@ -18,7 +19,12 @@ def home_view(request, *args, **kwargs):
 	if request.method == 'POST':
 
 		logger.debug('recognition request ')
-		uploaded_image = request.FILES['image_to_process']
+		
+		try:
+			uploaded_image = request.FILES['image_to_process']
+			logger.debug(uploaded_image.size)
+		except MultiValueDictKeyError:
+			return render(request, "home.html", {'message':'Изображение не загружено'})
 		data64 = base64.b64encode(uploaded_image.file.read())
 		result = recognize.delay(data64.decode('utf-8'))
 		res = recognize.AsyncResult(result.task_id)
@@ -46,4 +52,13 @@ def processing(request, uuid):
 
 	return render(request, "processing.html", {"taskId" : uuid})
 
+def handler404(request, template_name="404.html"):
+    response = render(request, template_name, {})
+    response.status_code = 404
+    return response
+
+def handler500(request, template_name="500.html"):
+    response = render(request, template_name, {})
+    response.status_code = 500
+    return response
 

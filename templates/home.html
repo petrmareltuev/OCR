@@ -1,14 +1,31 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
+<div class = "home">
+	<link rel="stylesheet" href="{% static 'home.css' %}">
+	<h1 class = "homeTitle">Optical Character Recognition</h1>
+	<script type="text/javascript" src="{% static 'bundle.js' %}"></script>
+	<link rel="stylesheet" href="{% static 'styles.css' %}">
 
-<h1 class = "homeTitle">Optical Character Recognition</h1>
-<form method="post" enctype="multipart/form-data">
-	{% csrf_token %}
+	<form name="form-input" class="form-input" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<label class = "button" for="img_input">Upload Image</label>
+		<input id ="img_input" class = "upload_image_input" type="file" name="image_to_process" accept=".jpg, .jpeg, .png" onchange="showPreview(event);">
 
-	<input class = "upload_image_input" type="file" name="image_to_process" accept=".jpg, .jpeg, .png">
-	<button type= "submit" class="submit_button">Submit</button>
-</form>
+		<div class="preview">
+			<img id = "img_preview">
+		</div>
+		<div>
+			<button type= "submit" class="submit_button button" >
+				<span>Submit</span>
+			</button>
+
+			<h1 id = "errorMessage">{{message}}</h1>
+		</div>
+		
+
+	</form>
+</div>
 
 {% endblock %}

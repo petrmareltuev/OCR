@@ -1,5 +1,4 @@
 """textrecognition URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
 Examples:
@@ -13,19 +12,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from mainpage.views import home_view, processing
+from mainpage.views import home_view, processing, handler404, handler500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name = 'home'),
     path('processing/<uuid:uuid>', processing, name = 'processing'),
+    path('404', handler404),
+    path('500', handler500),
     # path('image/<uuid:uuid>', image, name = 'image'),
 ]
 
-urlpatterns += staticfiles_urlpatterns()
-
-
+if settings.DEBUG:
+    urlpatterns += staticfiles_urlpatterns()

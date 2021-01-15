@@ -8,7 +8,7 @@ body {
   padding: 0;
   height:100%;
   text-align: center;
-  background-color: rgb(241,239, 233);    
+  background-color: rgb(241,239, 233);  
 }
 li{
   float:left;
@@ -36,26 +36,6 @@ ul {
   font-size: 44pt;
 }
 
-.submit_button{
-	display: block;
-    font-weight: 800;
-    color: #f1efe9;
-    text-transform: uppercase;
-    background-color: #282828;
-    font-size: 12px;
-    letter-spacing: .1em;
-    padding: 19px 30px 17px;
-    max-width: 100%;
-    width: 155px;
-    margin: 22px auto 34px;
-    border-radius: 25px;
-    transition: opacity .3s ease;
-}
-
-.submit_button:hover{opacity:.7}
-
-.upload_image_input{
-}
 
 .processed_view{
   margin: 0 auto;

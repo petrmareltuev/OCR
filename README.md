@@ -13,3 +13,6 @@ python manage.py runserver
 celery -A textrecognition worker -l info
 
 # В браузере на http://127.0.0.1:8000. При первом запросе возможно начнет докачивать зависимости
+
+Положить веса в папку ./pretrained_models/ch_ppocr_server_v2.0_rec_infer/:
+https://drive.google.com/file/d/1XPNI5weudFptAHwWdHvsy6Fu-3E_VBch/view?usp=sharing

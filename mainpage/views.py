@@ -43,7 +43,7 @@ def processing(request, uuid):
 	logger.debug("processing uuid request")
 	logger.debug(uuid)
 
-	res = recognize.AsyncResult(str(uuid))
+	res = recognize.AsyncResult(status_coder(uuid))
 	logger.debug(res.ready())
 	
 	if (res.ready()):

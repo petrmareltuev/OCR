@@ -9,7 +9,7 @@
 .form-input{
 	width: 70%;
 	padding: 20px;
-	
+	background-color: rgb(241,239, 233);
 	border: 2px dashed #555;
 
 }
@@ -32,6 +32,7 @@
 
 .form-input label{
 	margin:0 auto;
+	text-align: center;
 }
 
 

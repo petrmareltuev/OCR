@@ -5,14 +5,14 @@ from PIL import Image
 import paddle
 import paddle.distributed as dist
 
-import tools.program as program
+import Model.tools.program as program
 from ppocr.data import build_dataloader
-from ppocr.modeling.architectures import build_model
-from ppocr.postprocess import build_post_process
-from ppocr.metrics import build_metric
-from ppocr.losses import build_loss
-from ppocr.optimizer import build_optimizer
-from ppocr.utils.save_load import init_model
+from Model.ppocr.modeling.architectures import build_model
+from Model.ppocr.postprocess import build_post_process
+from Model.ppocr.metrics import build_metric
+from Model.ppocr.losses import build_loss
+from Model.ppocr.optimizer import build_optimizer
+from Model.ppocr.utils.save_load import init_model
 from paddleocr import PaddleOCR
 
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"

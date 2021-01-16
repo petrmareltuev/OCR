@@ -2,11 +2,19 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'wait.css' %}">
+<link rel="stylesheet" href="{% static 'loading.css' %}">
+<meta http-equiv="refresh" content="3; {{taskId}}">
 
-<meta http-equiv="refresh" content="2; {{taskId}}">
-<div class = "processed_view">
-	<h1>Ваше изображение находится на обработке, id = {{taskId}}</h1>
+<div class = "wait">
 
+	<div>
+		<h1>Ваше изображение находится на обработке</h1>
+	</div>
+	<div>
+		{% include 'elements/loading.html' %}
+	</div>
+	
 </div>
 {% endblock %}
 

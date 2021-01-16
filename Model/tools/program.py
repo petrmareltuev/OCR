@@ -27,11 +27,11 @@ import paddle.distributed as dist
 from tqdm import tqdm
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
 
-from ppocr.utils.stats import TrainingStats
-from ppocr.utils.save_load import save_model
-from ppocr.utils.utility import print_dict
-from ppocr.utils.logging import get_logger
-from ppocr.data import build_dataloader
+from Model.ppocr.utils.stats import TrainingStats
+from Model.ppocr.utils.save_load import save_model
+from Model.ppocr.utils.utility import print_dict
+from Model.ppocr.utils.logging import get_logger
+from Model.ppocr.data import build_dataloader
 import numpy as np
 
 

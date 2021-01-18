@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  redis_db:
+    image: 621ceef7494a
+    restart: always
+    container_name: 'my_redis'
+    ports:
+      - '6379:6379'
+  web:
+    build: .
+    restart: always
+    container_name: 'my_django'
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - '8000:8000'
+  celery:
+    build: .
+    container_name: 'my_celery'
+    command: celery -A textrecognition worker -l info
+    volumes:
+      - .:/code
+    links:
+      - "redis_db:redis_db"
+    depends_on:
+      - web
+      - redis_db

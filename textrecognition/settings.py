@@ -23,7 +23,7 @@ SECRET_KEY = '2guef4nsk%n5sp7gj9z#50eb4xsf7+5m^_*ztng&l@nx&!qz__'
 DEBUG = True
 
 ALLOWED_HOSTS = ['petronix.alwaysdata.net',
-'127.0.0.1']
+'0.0.0.0', 'localhost']
 
 
 # Application definition
@@ -163,7 +163,7 @@ LOGGING = {
 }
 
 
-REDIS_HOST = '0.0.0.0'
+REDIS_HOST = 'redis_db'
 REDIS_PORT = '6379'
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600} 

@@ -38,19 +38,22 @@ def recognize(b64_image):
 	
 	ocr = OCRModel()
 	result = ocr.recognise_text(data, cls=False)
-
+	logger.debug(result)
 	sentences = [el[1][0] for el in result]
 
-	colored_sentences = {}
+	colored_sentences = []
 	for sentence in sentences:
-		colored_sentences[(random.randint(0,255),random.randint(0,255),random.randint(0,255))] = sentence
+		color = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
+		str_color = "rgb" + str(color)
+		colored_sentences.append([sentence , str_color])
 
+		
 	logger.debug(colored_sentences)
 
 	#data, sentences = data, {(255,0,0): "Hello Petr!",(255,222,0): "How are you?"}
 
 	img_uri = numpyimg_to_uri(data)
-	return img_uri
+	return img_uri, colored_sentences
 
 	
 

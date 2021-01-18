@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'processed_image.css' %}">
 <div class = "processed_view">
 	<img class = "processed_image" src="{{image}}">
-	<div class="sentences_area">
-		{% for col, row in sentences.items %} 
-		<h1 style="color:rgb{{col}};">{{row}}</h1>
-		{% endfor %}
+	<div class="processed_sentences">
+		<ul class="sentences_area">
+			{% for sent in sents %} 
+			<li style=" border-color: {{sent.1}}; color: {{sent.1}};">{{sent.0}}</li>
+			{% endfor %}
+		</ul>
 	</div>
 
 </div>

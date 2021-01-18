@@ -1,0 +1,35 @@
+.processed_view{
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+.processed_sentences{
+
+}
+.processed_image{
+  width: 50%;
+  height: auto;
+  border: 2px dashed #555;
+  align-self: flex-start;
+}
+.sentences_area {
+  list-style: none;
+  padding: 0;
+  align-self: flex-start;
+  
+}
+.sentences_area li {
+	font-family: "Trebuchet MS", "Lucida Sans";
+	padding: 7px 20px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	border-left: 10px solid #f05d22; 
+	box-shadow: 2px -2px 5px 0 rgba(0,0,0,.1),-2px -2px 5px 0 rgba(0,0,0,.1),
+    2px 2px 5px 0 rgba(0,0,0,.1),
+    -2px 2px 5px 0 rgba(0,0,0,.1);
+    font-size: 20px;
+    letter-spacing: 2px;
+    transition: 0.3s all linear;
+}

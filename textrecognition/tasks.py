@@ -1,4 +1,4 @@
-from Model.OCRModel import OCRModel
+from Model.pre_post_process_image import process_photo
 from textrecognition.celery import app
 import random
 import logging
@@ -12,11 +12,12 @@ from base64 import b64encode
 from celery.signals import setup_logging
 import cv2
 
+
 @setup_logging.connect
 def config_loggers(*args, **kwargs):
-    from logging.config import dictConfig
-    from django.conf import settings
-    dictConfig(settings.LOGGING)
+	from logging.config import dictConfig
+	from django.conf import settings
+	dictConfig(settings.LOGGING)
 
 
 @app.task
@@ -36,31 +37,21 @@ def recognize(b64_image):
 	
 	sys.argv = [sys.argv[0]]
 	
-	ocr = OCRModel()
-	result = ocr.recognise_text(data, cls=False)
-	logger.debug(result)
-	sentences = [el[1][0] for el in result]
-
-	colored_sentences = []
-	for sentence in sentences:
-		color = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
-		str_color = "rgb" + str(color)
-		colored_sentences.append([sentence , str_color])
-
+	output_image, colored_sentences = process_photo(data)
+	logger.debug(output_image)
 		
 	logger.debug(colored_sentences)
 
-	#data, sentences = data, {(255,0,0): "Hello Petr!",(255,222,0): "How are you?"}
 
-	img_uri = numpyimg_to_uri(data)
+	img_uri = numpyimg_to_uri(output_image)
 	return img_uri, colored_sentences
 
-	
+
 
 @app.task
 def hi():
 	a = 5
-	b = 6 
+	b = 6
 	c = a+b
 
 def numpyimg_to_uri(numpy_img):

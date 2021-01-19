@@ -1,0 +1,18 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+body {
+  overflow: auto;
+  background-color: rgb(241,239, 233);
+  
+}
+.homeTitle{
+  font-family: 'Aclonica', sans-serif;
+  
+  text-shadow: 2px 2px 25px black;
+  font-size: 44pt;
+}

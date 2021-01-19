@@ -2,7 +2,7 @@ version: '3'
 
 services:
   redis_db:
-    image: 621ceef7494a
+    image: redis
     restart: always
     container_name: 'my_redis'
     ports:

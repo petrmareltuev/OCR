@@ -10,7 +10,7 @@ def process_photo(photo):
     logger = logging.getLogger('celery')
     ocr = OCRModel()
     model_output = ocr.recognise_text(photo, cls=False)
-    colors_number = 12 if len(model_output) > 12 else len(model_output)
+    colors_number = 9 if len(model_output) > 9 else len(model_output)
     colormap = cm.rainbow(np.linspace(0, 1, colors_number))[:, :3] * 255
     color_cycle = itertools.cycle(colormap.astype(int))
     labeled_photo = photo
